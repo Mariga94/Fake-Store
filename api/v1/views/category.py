@@ -26,7 +26,7 @@ def get_category(category_id):
     if request.method == "GET":
         return jsonify(category.to_dict())
 
-@app_views.route("/category/<category_id>/product", methods=["GET"])
+@app_views.route("/categories/<category_id>/product", methods=["GET"])
 def get_category_by_product_id(category_id):
     products = []
     category = storage.get("ProductCategory", category_id)
