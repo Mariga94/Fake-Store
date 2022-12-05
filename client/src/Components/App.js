@@ -1,69 +1,131 @@
 import React from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
-import sofaArray from "./data";
-import categoryArray from "./category-data";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import Cart from "./Cart";
 import Shop from "./Shop";
 import Home from "./Home";
 import Categories from "./Categories";
+import CategoryProduct from "./CategoryProduct";
 import About from "./About";
 import Product from "./ProductItem";
+import axios from "axios";
+
 
 export default function App() {
-  // eslint-disable-next-line no-unused-vars
-  const [sofas, setSofas] = React.useState(sofaArray);
-  const [categories] = React.useState(categoryArray);
+  const [categoryProduct, setCategoryProduct] = React.useState([]);
+  const [products, setProducts] = React.useState([]);
+  const [categories, setCategories] = React.useState([]);
   const [cart, setCart] = React.useState([]);
-  const [productDesc, setProductDesc] = React.useState();
+  // const [error, setError] = React.useState(null);
+  // const [isLoaded, setIsLoaded] = React.useState(false);
+  const navigate = useNavigate();
 
-  function display(id) {
-    for (let i = 0; i < sofas.length; i++) {
-      let currentObj = sofas[i];
-      if (currentObj.id === id) {
-        setProductDesc(currentObj)
-        
+  const fetchProducts = () => {
+    axios.get("http://127.0.0.1:5000/api/v1/products").then((res) => {
+      setProducts(res.data);
+    });
+  };
+
+  const fetchCategories = () => {
+    axios.get("http://127.0.0.1:5000/api/v1/categories").then((res) => {
+      setCategories(res.data);
+    });
+  };
+
+  const fetchCategoryById = (id) => {
+    axios
+      .get(`http://127.0.0.1:5000/api/v1/categories/${id}/product`)
+      .then((res) => {
+        const categoryProduct = res.data;
+        setCategoryProduct(
+          window.localStorage.setItem(
+            "categoryProduct",
+            JSON.stringify(categoryProduct)
+          )
+        );
+        navigateToCategoryProduct();
+      });
+  };
+
+  function fetchCart() {
+    axios.get("http://127.0.0.1:5000/api/v1/cart").then((res) => {
+      setCart(res.data);
+    });
+  }
+
+  function AddToCart(id) {
+    let obj = {};
+    for (let i = 0; i < products.length; i++) {
+      let current = products[i];
+      if (current.id === id) {
+        obj["id"] = current.id;
+        console.log(obj);
+        axios.post(`http://127.0.0.1:5000/api/v1/cart/${id}`, obj).then(
+          (res) => {
+            console.log(res);
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
       }
     }
   }
-  console.log(productDesc)
 
-  function addItemToCart(id) {
-    // Adds item to cart
-    setCart((prev) => {
-      const arr = [...prev];
-      for (let i = 0; i < sofas.length; i++) {
-        let currentSofa = sofas[i];
-        if (currentSofa.id === id) {
-          arr.push(currentSofa);
-        }
+  function deleteItemFromCart(cartId) {
+    axios.delete(`http://127.0.0.1:5000/api/v1/cart/${cartId}`).then(
+      (res) => {
+        console.log(res);
+      },
+      (error) => {
+        console.log(error);
       }
-      return arr;
-    });
+    );
+  }
+
+  React.useEffect(() => {
+    fetchProducts();
+    fetchCategories();
+    fetchCart();
+    setCategoryProduct(
+      JSON.parse(window.localStorage.getItem("categoryProduct"))
+    );
+  }, []);
+
+  // Navigation
+  function navigateToCategoryProduct() {
+    navigate("/category/:id/product");
   }
 
   return (
     <div>
       <Navbar len={cart.length} />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route
-            path="/category"
-            element={<Categories categories={categories} />}
-          />
-          <Route
-            path="/shop"
-            element={
-              <Shop sofas={sofas} add={addItemToCart} display={display} />
-            }
-          />
-          <Route path="/cart" element={<Cart cart={cart} />} />
-          <Route path="/product" element={<Product />} />
-        </Routes>
-      </BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route
+          path="/products"
+          element={<Shop products={products} add={AddToCart} />}
+        />
+        <Route
+          path="/cart"
+          element={<Cart cart={cart} deleted={deleteItemFromCart} />}
+        />
+        <Route path="/product" element={<Product />} />
+        <Route
+          path="/categories"
+          element={
+            <Categories
+              categories={categories}
+              fetchCategoryById={fetchCategoryById}
+            />
+          }
+        />
+        <Route
+          element={<CategoryProduct categoryProduct={categoryProduct} />}
+        />
+      </Routes>
       <Footer />
     </div>
   );

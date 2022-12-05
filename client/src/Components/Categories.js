@@ -3,12 +3,15 @@ import CategoryItem from "./CategoryItem";
 
 export default function Categories(props) {
   const categories = props.categories;
+  const fetchCategoryById = props.fetchCategoryById
   const mapCategories = categories.map((item) => (
     <CategoryItem
       key={item.id}
       id={item.id}
       name={item.name}
       image={item.image}
+      description={item.description}
+      fetchCategoryById={fetchCategoryById}
     />
   ));
   return (

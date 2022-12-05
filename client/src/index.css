@@ -87,6 +87,7 @@ footer {
   flex-flow: wrap;
   justify-content: center;
   margin-top: 50px;
+  min-height: 80vh;
 }
 
 .home {
@@ -121,10 +122,24 @@ footer {
   align-items: center;
 }
 
+.remove {
+  background-color: #000;
+  color: #fff;
+  height: 35px;
+  margin:0 20px;
+  cursor: pointer;
+  
+}
+
 .cart--item {
   /* border: 1px solid gray; */
   display: flex;
   width: 700px;
+  /* background-color: aquamarine; */
+  margin-bottom: 10px;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid rgb(164, 164, 164);
 }
 
 .cart--item img {
@@ -136,6 +151,16 @@ footer {
   display: flex;
   flex-direction: column;
   padding-left: 20px;
+  width: 180px;
+  /* justify-content: center; */
+  align-items: flex-start;
+  margin-left: 20px;
+  
+  /* background-color: rebeccapurple; */
+}
+
+.btn-div {
+  /* background-color: darkblue; */
 }
 
 .empty--cart {
@@ -196,15 +221,17 @@ footer {
 }
 
 .category {
-  background: rgb(12, 83, 81);
+  border: 1px solid rgb(0, 0, 0, .5);
   height: 300px;
   width: 300px;
   margin: 10px;
-  color: #fff;
+  padding: 0 5px;
+  color: rgb(24, 24, 24);
   text-align: center;
   cursor: pointer;
   opacity: 0.8;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }

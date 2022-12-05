@@ -7,8 +7,8 @@ export default function Navbar(props) {
       <nav className="navbar">
         <span className="logo">Furnish</span>
         {/* <a href="home">Home</a> */}
-        <a href="shop">Shop</a>
-        <a href="cart">Cart {props.len > 0 ? `(${props.len})`: ""}</a>
+        <a href="/products">Products</a>
+        <a href="/cart">Cart {props.len > 0 ? `(${props.len})`: ""}</a>
       </nav>
     </div>
   );
