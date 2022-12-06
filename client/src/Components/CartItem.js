@@ -1,3 +1,4 @@
+// Cart item component
 import React from "react";
 
 export default function CartItem(props) {

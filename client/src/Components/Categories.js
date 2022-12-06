@@ -1,9 +1,10 @@
+// categories component
 import React from "react";
 import CategoryItem from "./CategoryItem";
 
 export default function Categories(props) {
   const categories = props.categories;
-  const fetchCategoryById = props.fetchCategoryById
+  const fetchCategoryById = props.fetchCategoryById;
   const mapCategories = categories.map((item) => (
     <CategoryItem
       key={item.id}

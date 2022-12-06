@@ -1,9 +1,10 @@
-import React from 'react'
+// Footer component
+import React from "react";
 
-export default function Footer () {
-    return (
-        <footer>
-            <a href='/about'>About</a>
-        </footer>
-    )
+export default function Footer() {
+  return (
+    <footer>
+      <a href="/about">About</a>
+    </footer>
+  );
 }
