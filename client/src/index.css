@@ -5,7 +5,7 @@
 
 a {
   text-decoration: none;
-  color:#fff;
+  color: #fff;
 }
 
 .navbar {
@@ -78,7 +78,8 @@ footer {
   opacity: 1;
 }
 
-.shop--item > .price, p {
+.shop--item > .price,
+p {
   padding: 0 5px;
 }
 
@@ -95,9 +96,10 @@ footer {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  
+
   align-items: center;
-  background: no-repeat url("https://images.unsplash.com/photo-1616047006789-b7af5afb8c20?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8bGl2aW5nJTIwcm9vbXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60");
+  background: no-repeat
+    url("https://images.unsplash.com/photo-1616047006789-b7af5afb8c20?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8bGl2aW5nJTIwcm9vbXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60");
   background-size: cover;
 }
 
@@ -126,9 +128,8 @@ footer {
   background-color: #000;
   color: #fff;
   height: 35px;
-  margin:0 20px;
+  margin: 0 20px;
   cursor: pointer;
-  
 }
 
 .cart--item {
@@ -155,12 +156,8 @@ footer {
   /* justify-content: center; */
   align-items: flex-start;
   margin-left: 20px;
-  
-  /* background-color: rebeccapurple; */
-}
 
-.btn-div {
-  /* background-color: darkblue; */
+  /* background-color: rebeccapurple; */
 }
 
 .empty--cart {
@@ -168,29 +165,28 @@ footer {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  border: 2px solid rgb(0, 0, 0, .5);
+  border: 2px solid rgb(0, 0, 0, 0.5);
   padding: 20px 50px;
   width: 500px;
 }
-.empty--cart > h3{
+.empty--cart > h3 {
   color: rgb(24, 24, 24);
   padding: 5px;
   margin-bottom: 50px;
 }
 
 .empty--cart a {
-  color: rgba(0, 0, 0, .5);
-  border: 1px solid rgba(0, 0, 0, .5);
+  color: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.5);
   padding: 15px;
 }
-
 
 .qty {
   display: flex;
   align-items: center;
 }
 
- .qty > button {
+.qty > button {
   width: 40px;
   height: 30px;
   border: none;
@@ -217,11 +213,10 @@ footer {
   display: flex;
   flex-flow: wrap;
   justify-content: space-evenly;
-  
 }
 
 .category {
-  border: 1px solid rgb(0, 0, 0, .5);
+  border: 1px solid rgb(0, 0, 0, 0.5);
   height: 300px;
   width: 300px;
   margin: 10px;
@@ -242,8 +237,8 @@ footer {
 
 .about {
   min-height: 80vh;
-  margin:0 20px;
-  color:rgba(24, 24, 24, 0.884)
+  margin: 0 20px;
+  color: rgba(24, 24, 24, 0.884);
 }
 
 .product--page {
