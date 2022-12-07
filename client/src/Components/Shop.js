@@ -6,7 +6,7 @@ export default function Shop(props) {
   const products = props.products;
   const add = props.add;
   const display = props.display;
-
+  
   const sofaElements = products.map((product) => (
     <ShopItem
       key={product.id}

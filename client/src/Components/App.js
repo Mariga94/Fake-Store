@@ -17,13 +17,30 @@ export default function App() {
   const [products, setProducts] = React.useState([]);
   const [categories, setCategories] = React.useState([]);
   const [cart, setCart] = React.useState([]);
-
+  const [product, setProduct] = React.useState();
   const navigate = useNavigate();
 
   // Navigation
-  function navigateToCategoryProduct(id) {
-    navigate(`/category/${id}/product`);
+  function navigateToCategoryProduct(category_id) {
+    navigate(`/categories/${category_id}/products`);
   }
+
+  function navigateToProduct(id) {
+    navigate(`/products/${id}`)
+  }
+
+  // fetch one product based on product id
+  const fetchProduct = (id) => {
+    axios.get(`http://127.0.0.1:5000/api/v1/products/${id}`).then(
+      (res) => {
+        setProduct(res.data);
+        navigateToProduct(id)
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  };
 
   // fetch products from the REST API
   const fetchProducts = () => {
@@ -45,9 +62,9 @@ export default function App() {
   };
 
   // fetch one category from the REST API
-  const fetchCategoryById = (id) => {
+  const fetchCategoryById = (category_id) => {
     axios
-      .get(`http://127.0.0.1:5000/api/v1/categories/${id}/product`)
+      .get(`http://127.0.0.1:5000/api/v1/categories/${category_id}/product`)
       .then((res) => {
         const categoryProduct = res.data;
         setCategoryProduct(
@@ -56,10 +73,10 @@ export default function App() {
             JSON.stringify(categoryProduct)
           )
         );
-        navigateToCategoryProduct(id);
+        navigateToCategoryProduct(category_id);
       });
   };
-
+  
   // fetch cart items from the database
   function fetchCart() {
     axios.get("http://127.0.0.1:5000/api/v1/cart").then(
@@ -113,7 +130,6 @@ export default function App() {
     );
   }, []);
 
-  console.log(products)
 
   return (
     <div>
@@ -123,13 +139,19 @@ export default function App() {
         <Route path="/about" element={<About />} />
         <Route
           path="/products"
-          element={<Shop products={products} add={AddToCart} />}
+          element={<Shop products={products} 
+            add={AddToCart} 
+            display={fetchProduct}/>}
         />
         <Route
           path="/cart"
-          element={<Cart cart={cart} deleted={deleteItemFromCart} />}
+          element={<Cart cart={cart} 
+          deleted={deleteItemFromCart} />}
         />
-        <Route path="/product/:id" element={<Product />} />
+        <Route path="/products/:id" 
+          element={<Product product={product} 
+          add={AddToCart} />}
+           />
         <Route
           path="/categories"
           element={
@@ -140,8 +162,10 @@ export default function App() {
           }
         />
         <Route
-          path="category/product"
-          element={<CategoryProduct categoryProduct={categoryProduct} />}
+          path="categories/:id/products"
+          element={<CategoryProduct 
+            categoryProduct={categoryProduct} 
+            add={AddToCart} />}
         />
       </Routes>
       <Footer />
