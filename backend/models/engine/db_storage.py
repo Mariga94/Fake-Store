@@ -32,9 +32,9 @@ class DBStorage:
         MYSQL_USER_PWD = os.environ.get('MYSQL_USER_PWD') 
         MYSQL_HOST = os.environ.get('MYSQL_HOST')
         MYSQL_PORT = os.environ.get('MYSQL_PORT') 
-        MYSQL_DATABASE = os.environ.get('MYSQL_DATABASE') 
-        
-        self.__engine = create_engine("mysql+mysqldb://{}:{}@{}:{}/{}"
+        MYSQL_DATABASE = os.environ.get('MYSQL_DATABASE')
+
+        self.__engine = create_engine("mysql+mysqldb://{}:{}@{}/{}"
                                       .format(MYSQL_USER, MYSQL_USER_PWD, 
                                               MYSQL_HOST, MYSQL_PORT, 
                                               MYSQL_DATABASE),
