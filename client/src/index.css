@@ -13,7 +13,7 @@ a {
   background-color: rgba(0, 0, 0, 0.884);
   color: #fff;
   align-items: center;
-  height: 100px;
+  height: 50px;
   justify-content: space-between;
 }
 
@@ -30,7 +30,11 @@ a {
   text-decoration: none;
   color: #fff;
   font-size: 20px;
-  margin-right: 70px;
+  /* margin-right: 70px; */
+}
+
+.links > a{
+  margin-right: 50px;
 }
 
 footer {
@@ -92,14 +96,14 @@ p {
 }
 
 .home {
-  height: 80vh;
+  height: 85vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
-
   align-items: center;
-  background: no-repeat
-    url("https://images.unsplash.com/photo-1616047006789-b7af5afb8c20?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8bGl2aW5nJTIwcm9vbXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60");
+  color: rgb(0, 0, 0);
+  background: no-repeat 
+  url("https://img.freepik.com/free-photo/scandinavian-living-room-interior-design-zoom-background_53876-143147.jpg?w=1060&t=st=1670439186~exp=1670439786~hmac=d9296e1c1b52a8f4a5074250c7b706435c3145fed8fec11e434e7e154574b54d");
   background-size: cover;
 }
 
@@ -221,7 +225,7 @@ p {
   width: 300px;
   margin: 10px;
   padding: 0 5px;
-  color: rgb(24, 24, 24);
+  color: #fff;
   text-align: center;
   cursor: pointer;
   opacity: 0.8;
@@ -229,6 +233,7 @@ p {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-color: rgb(39, 39, 39);
 }
 
 .category:hover {
@@ -243,4 +248,22 @@ p {
 
 .product--page {
   height: 80vh;
+  display: flex;
+  align-items: center;
+  padding-top: 20px;
+  justify-content: center;
+  /* background-color: aquamarine; */
 }
+
+.product--page > .shop--item > img {
+  width: 450px;
+  height: 400px;
+}
+
+.product--page > .shop--item {
+  display: flex;
+  /* flex-direction: row; */
+  align-items: center;
+  justify-content: center;
+}
+
