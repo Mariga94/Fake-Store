@@ -20,6 +20,7 @@ export default function App() {
   const [product, setProduct] = React.useState();
   const navigate = useNavigate();
 
+  const base_url = "https://furnish-store.onrender.com/api/v1/"
   // Navigation
   function navigateToCategoryProduct(category_id) {
     navigate(`/categories/${category_id}/products`);
@@ -31,7 +32,7 @@ export default function App() {
 
   // fetch one product based on product id
   const fetchProduct = (id) => {
-    axios.get(`http://127.0.0.1:5000/api/v1/products/${id}`).then(
+    axios.get(`${base_url}products/${id}`).then(
       (res) => {
         setProduct(res.data);
         navigateToProduct(id)
@@ -44,7 +45,7 @@ export default function App() {
 
   // fetch products from the REST API
   const fetchProducts = () => {
-    axios.get("http://127.0.0.1:5000/api/v1/products").then(
+    axios.get(`${base_url}products`).then(
       (res) => {
         setProducts(res.data);
       },
@@ -56,7 +57,7 @@ export default function App() {
 
   // fetch categories from the REST API
   const fetchCategories = () => {
-    axios.get("http://127.0.0.1:5000/api/v1/categories").then((res) => {
+    axios.get(`${base_url}categories`).then((res) => {
       setCategories(res.data);
     });
   };
@@ -64,7 +65,7 @@ export default function App() {
   // fetch one category from the REST API
   const fetchCategoryById = (category_id) => {
     axios
-      .get(`http://127.0.0.1:5000/api/v1/categories/${category_id}/product`)
+      .get(`${base_url}categories/${category_id}/product`)
       .then((res) => {
         const categoryProduct = res.data;
         setCategoryProduct(
@@ -79,7 +80,7 @@ export default function App() {
   
   // fetch cart items from the database
   function fetchCart() {
-    axios.get("http://127.0.0.1:5000/api/v1/cart").then(
+    axios.get(`${base_url}cart`).then(
       (res) => {
         setCart(res.data);
       },
@@ -97,7 +98,7 @@ export default function App() {
       if (current.id === id) {
         obj["id"] = current.id;
         console.log(obj);
-        axios.post(`http://127.0.0.1:5000/api/v1/cart/${id}`, obj).then(
+        axios.post(`${base_url}cart/${id}`, obj).then(
           (res) => {
             console.log(res);
           },
@@ -111,7 +112,7 @@ export default function App() {
 
   //delete item from cart
   function deleteItemFromCart(cartId) {
-    axios.delete(`http://127.0.0.1:5000/api/v1/cart/${cartId}`).then(
+    axios.delete(`${base_url}cart/${cartId}`).then(
       (res) => {
         console.log(res);
       },
