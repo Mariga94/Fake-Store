@@ -28,17 +28,14 @@ class DBStorage:
 
     def __init__(self):
         """Instantiate a DBStorage object"""
-        MYSQL_USER = os.environ.get('MYSQL_USER')
-        MYSQL_USER_PWD = os.environ.get('MYSQL_USER_PWD') 
-        MYSQL_HOST = os.environ.get('MYSQL_HOST')
-        MYSQL_PORT = os.environ.get('MYSQL_PORT') 
-        MYSQL_DATABASE = os.environ.get('MYSQL_DATABASE')
+        # MYSQL_USER = os.environ.get('MYSQL_USER')
+        # MYSQL_USER_PWD = os.environ.get('MYSQL_USER_PWD') 
+        # MYSQL_HOST = os.environ.get('MYSQL_HOST')
+        # MYSQL_PORT = os.environ.get('MYSQL_PORT') 
+        # MYSQL_DATABASE = os.environ.get('MYSQL_DATABASE')
 
-        self.__engine = create_engine("mysql+mysqldb://{}:{}@{}:/{}"
-                                      .format(MYSQL_USER, MYSQL_USER_PWD, 
-                                              MYSQL_HOST, MYSQL_PORT, 
-                                              MYSQL_DATABASE),
-                                      pool_pre_ping=True)
+        self.__engine = create_engine("mysql+mysqldb://sql8583371:v1p2LcPlTa@sql8.freesqldatabase.com:3306/sql8583371",
+                            pool_pre_ping=True)
  
 
     def all(self, cls=None):
