@@ -6,8 +6,8 @@ from models import cart_item
 from models import user_address
 from models import product
 from models import user
-from os import getenv
-
+import os
+from secrets import sectrets
 
 classes = {
 
@@ -29,7 +29,16 @@ class DBStorage:
 
     def __init__(self):
         """Instantiate a DBStorage object"""
-        self.__engine = create_engine("mysql+mysqldb://sql8583371:v1p2LcPlTa@sql8.freesqldatabase.com:3306/sql8583371",
+        MYSQL_USER = os.environ.get('MYSQL_USER')
+        MYSQL_USER_PWD = os.environ.get('MYSQL_USER_PWD') 
+        MYSQL_HOST = os.environ.get('MYSQL_HOST')
+        MYSQL_PORT = os.environ.get('MYSQL_PORT') 
+        MYSQL_DATABASE = os.environ.get('MYSQL_DATABASE') 
+        
+        self.__engine = create_engine("mysql+mysqldb://{}:{}@{}:{}/{}"
+                                      .format(MYSQL_USER, MYSQL_USER_PWD, 
+                                              MYSQL_HOST, MYSQL_PORT, 
+                                              MYSQL_DATABASE),
                                       pool_pre_ping=True)
  
 
