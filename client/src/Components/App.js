@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Router, Route, useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import Cart from "./Cart";
@@ -20,14 +20,14 @@ export default function App() {
   const [product, setProduct] = React.useState();
   const navigate = useNavigate();
 
-  const base_url = "https://furnish-store.onrender.com/api/v1/"
+  const base_url = "https://furnish-store.onrender.com/api/v1/";
   // Navigation
   function navigateToCategoryProduct(category_id) {
     navigate(`/categories/${category_id}/products`);
   }
 
   function navigateToProduct(id) {
-    navigate(`/products/${id}`)
+    navigate(`/products/${id}`);
   }
 
   // fetch one product based on product id
@@ -35,7 +35,7 @@ export default function App() {
     axios.get(`${base_url}products/${id}`).then(
       (res) => {
         setProduct(res.data);
-        navigateToProduct(id)
+        navigateToProduct(id);
       },
       (error) => {
         console.log(error);
@@ -64,20 +64,18 @@ export default function App() {
 
   // fetch one category from the REST API
   const fetchCategoryById = (category_id) => {
-    axios
-      .get(`${base_url}categories/${category_id}/product`)
-      .then((res) => {
-        const categoryProduct = res.data;
-        setCategoryProduct(
-          window.localStorage.setItem(
-            "categoryProduct",
-            JSON.stringify(categoryProduct)
-          )
-        );
-        navigateToCategoryProduct(category_id);
-      });
+    axios.get(`${base_url}categories/${category_id}/product`).then((res) => {
+      const categoryProduct = res.data;
+      setCategoryProduct(
+        window.localStorage.setItem(
+          "categoryProduct",
+          JSON.stringify(categoryProduct)
+        )
+      );
+      navigateToCategoryProduct(category_id);
+    });
   };
-  
+
   // fetch cart items from the database
   function fetchCart() {
     axios.get(`${base_url}cart`).then(
@@ -131,29 +129,31 @@ export default function App() {
     );
   }, []);
 
-
   return (
     <div>
       <Navbar len={cart.length} />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
+        <Route exact path="/" element={<Home />} />
+        <Route exact path="/about" element={<About />} />
         <Route
+          exact
           path="/products"
-          element={<Shop products={products} 
-            add={AddToCart} 
-            display={fetchProduct}/>}
+          element={
+            <Shop products={products} add={AddToCart} display={fetchProduct} />
+          }
         />
         <Route
+          exact
           path="/cart"
-          element={<Cart cart={cart} 
-          deleted={deleteItemFromCart} />}
+          element={<Cart cart={cart} deleted={deleteItemFromCart} />}
         />
-        <Route path="/products/:id" 
-          element={<Product product={product} 
-          add={AddToCart} />}
-           />
         <Route
+          exact
+          path="/products/:id"
+          element={<Product product={product} add={AddToCart} />}
+        />
+        <Route
+          exact
           path="/categories"
           element={
             <Categories
@@ -163,10 +163,14 @@ export default function App() {
           }
         />
         <Route
+          exact
           path="categories/:id/products"
-          element={<CategoryProduct 
-            categoryProduct={categoryProduct} 
-            add={AddToCart} />}
+          element={
+            <CategoryProduct
+              categoryProduct={categoryProduct}
+              add={AddToCart}
+            />
+          }
         />
       </Routes>
       <Footer />
