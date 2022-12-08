@@ -1,16 +1,19 @@
-<p align="center">
-  <img href="https://user-images.githubusercontent.com/56932629/206349980-e7e6d212-230a-44ec-     bd78-7f4fa579867e.png" alt="furnish-logo"/>
-</p>
-<h1>Furnish App</h1>
-![image](https://user-images.githubusercontent.com/56932629/206345133-b7d63acf-2580-4951-b84a-ec2c507cfce9.png)
-# Link to site
+![furnishlogo](https://user-images.githubusercontent.com/56932629/206350712-46ec42f4-cf16-4ac5-89aa-7d8871a23cb7.png)
+# Furnish App
+Simple web application build using the following tools
+- **Frontend**
+  - React -generated template with create-react-app
+- **Backend**
+  -  Build using python and sqlalchemy
+  -  Build the RESTAPI using Flask
+- **Deployed**
+  - Backend server was deployed on Render on a free tier account available for 30 days
+  - React Static site was deployed on on vercel on a free tier account available for 30 days   
+# Link to deployed website
 https://fake-store-eight.vercel.app/
-## Why Build this App
-This is a simple web application that was build to help the informal local capentry industry by providing a platform where customers can find local items.
-## Production-ready project templates
-###
+![Screenshot 2022-12-08 06 49 22](https://user-images.githubusercontent.com/56932629/206352548-f7387475-0d35-4481-a344-ebe9e72c44d6.png)
 ## Contributing
+Github [Joseph Mariga](https://github.com/Mariga94)
 ## Licensing
-MIT Licenses
-## Authors
-Joseph Mariga
+Free and open software under the MIT License
+
