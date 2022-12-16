@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { Routes, Router, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate, Link } from "react-router-dom";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import Cart from "./Cart";
@@ -20,10 +20,12 @@ export default function App() {
   const [product, setProduct] = React.useState();
   const navigate = useNavigate();
 
-  const base_url = "https://furnish-store.onrender.com/api/v1/";
+  // const base_url = "https://furnish-store.onrender.com/api/v1/";
+  const base_url = "http://127.0.0.1:5000/api/v1/";
   // Navigation
   function navigateToCategoryProduct(category_id) {
     navigate(`/categories/${category_id}/products`);
+    window.location.reload();
   }
 
   function navigateToProduct(id) {
@@ -99,6 +101,8 @@ export default function App() {
         axios.post(`${base_url}cart/${id}`, obj).then(
           (res) => {
             console.log(res);
+            window.alert("Item Added to Cart")
+            window.location.reload();
           },
           (error) => {
             console.log(error);
@@ -109,9 +113,11 @@ export default function App() {
   }
 
   //delete item from cart
-  function deleteItemFromCart(cartId) {
+  function deleteItemFromCart(cartId, e) {
     axios.delete(`${base_url}cart/${cartId}`).then(
       (res) => {
+        window.location.reload();
+        window.alert("Item removed from cart.");
         console.log(res);
       },
       (error) => {

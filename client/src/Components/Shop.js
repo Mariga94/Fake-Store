@@ -6,7 +6,7 @@ export default function Shop(props) {
   const products = props.products;
   const add = props.add;
   const display = props.display;
-  
+
   const sofaElements = products.map((product) => (
     <ShopItem
       key={product.id}
@@ -19,5 +19,10 @@ export default function Shop(props) {
     />
   ));
 
-  return <div className="shop--container">{sofaElements}</div>;
+  return (
+    <div>
+      <div id="snackbar"></div>
+      <div className="shop--container">{sofaElements}</div>
+    </div>
+  );
 }
